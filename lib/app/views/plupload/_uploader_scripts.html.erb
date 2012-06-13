@@ -55,8 +55,13 @@
       <% if options[:filters].count > 0 %>
         filters : <%= options[:filters].to_json.to_s.html_safe %>,
       <% end %>
-      flash_swf_url : '/javascripts/plupload-rails3/plupload/js/plupload.flash.swf',
-      silverlight_xap_url : '/javascripts/plupload-rails3/plupload/js/plupload.silverlight.xap'
+      <% if Rails.version < "3.1" %>
+        flash_swf_url : '/javascripts/plupload-rails3/plupload/js/plupload.flash.swf',
+        silverlight_xap_url : '/javascripts/plupload-rails3/plupload/js/plupload.silverlight.xap'
+      <% else %>
+        flash_swf_url : '/assets/plupload-rails3/plupload/js/plupload.flash.swf',
+        silverlight_xap_url : '/assets/plupload-rails3/plupload/js/plupload.silverlight.xap'
+      <% end %>
       <% if options[:pluploader] %>
       , 
       init: {
